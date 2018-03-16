@@ -7,7 +7,7 @@ import ventanas.VentanaPrincipal;
 //intentar realizar un listado de informacion en los paneles de listado
 
 public class Principal {
-
+//nuevo comentario de codigo
 	public static void main(String[] args) {
 		new VentanaPrincipal();
 	}

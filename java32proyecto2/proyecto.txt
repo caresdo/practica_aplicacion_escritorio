@@ -1,0 +1,14 @@
++crear una aplicacion de gestion web para una empresa negocio o similar, 
++la aplicacion estara basada en 3 tablas administradores(login(primary),password)
++tabla clientes(nombre+ calle+ numeracion+ codigo postal+ poblacion+ telefono+ email+ particularoempresa)
++tabla productos creada en la otra practica
++los usuarios que quieean acceder a la gestion de las informaciones de las tablas a excepcion de la de administradores
++deberan identificarse previamente insertando login y pass de administrador
+una vez listados podran editar borrar y crear usando formularios web.
+todos los campos deben ser validados en servidor cumpliendo un tamaño minimo y maximo y un formato acorde a elegir por 
+el programador.
++todas las partes de la aplicacion deben de estar protegidas de forma que si un usuario 
++no se ha identificado como administrador correctamente no pueda acceder a ninguna de ellas
+--opcinal validar con javascript
+--sustituir hasta 3 campos de entrada en los formularios por campos no enseñados en clase(select, radio button etc)
+--mejoras visuales usando css html5 javascript librerias o motores generadores de codigo

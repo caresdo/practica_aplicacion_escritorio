@@ -9,7 +9,5 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <h1>Bienvenido al menu principal</h1>
-<a href="registrarCliente.jsp">registrar cliente</a>
-<a href="registrarProducto.jsp">registrar productos</a>
 </body>
 </html>

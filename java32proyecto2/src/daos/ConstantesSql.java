@@ -11,6 +11,6 @@ public class ConstantesSql {
 	public static final String BORRAR_PRODUCTO = "delete from tabla_productos where id = ?";
 	public static final String OBTENER_CLIENTE_POR_ID = "select * from tabla_clientes where id = ?";
 	public static final String OBTENER_PRODUCTO_POR_ID = "select * from tabla_productos where id = ?";
-	public static final String GUARDAR_CAMBIOS_PRODUCTO = "update tabla_productos set nombre=?, cantidad=?, precio=?, oferta=?, fecha_cad=?, proveedor=?, comentario=? WHERE id=?;";
-	public static final String GUARDAR_CAMBIOS_CLIENTE = "update tabla_clientes set nombre=?, calle=?, numeracion=?, codigo_postal=?, poblacion=?, telefono=?, email=?, particular_empresa=? WHERE id=?;";
+	public static final String GUARDAR_CAMBIOS_PRODUCTO = "update tabla_productos set nombre=?, cantidad=?, precio=?, oferta=?, fecha_cad=?, proveedor=?, comentario=? WHERE id=?";
+	public static final String GUARDAR_CAMBIOS_CLIENTE = "update tabla_clientes set nombre=?, calle=?, numeracion=?, codigo_postal=?, poblacion=?, telefono=?, email=?, particular_empresa=? WHERE id=?";
 }//end class

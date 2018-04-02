@@ -10,6 +10,7 @@
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
 <h1>lista de Clientes</h1>
+<a href="registrarCliente.jsp">registrar cliente</a>
 <c:forEach items="${clientes}" var = "cliente">
 	<div style="margin: 10px">
 		nombre: ${cliente.nombre}<br>

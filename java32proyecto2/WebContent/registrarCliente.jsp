@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script src="js/validacionCliente.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -13,7 +14,7 @@
 	
 
 	<p>introduce los datos de cliente</p>
-	<form name="formCliente" action="ServletRegistroCliente" method="post"><br>
+	<form name="formCliente" action="ServletRegistroCliente" method="post" onsubmit="return validarCliente()"><br>
 	nombre: <input type="text" name="nombre"><br>
 	calle: <input type="text" name="calle"><br>
 	numeracion: <input type="text" name="numeracion"><br>
@@ -25,5 +26,6 @@
 	<input type="submit" value="aceptar" />
 	</form>
 	
+	<script type="text/javascript" src="js/validarCliente.js"></script>
 </body>
 </html>

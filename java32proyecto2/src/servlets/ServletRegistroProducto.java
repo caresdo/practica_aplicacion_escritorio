@@ -1,6 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,34 +27,81 @@ public class ServletRegistroProducto extends HttpServlet {
 		// recoger datos del formulario
 		String nombre = request.getParameter("nombre");
 		String cantidad = request.getParameter("cantidad");
-		String precio = request.getParameter("precio");
-		String oferta = request.getParameter("oferta");
+		String precio = request.getParameter("precio").replace(",", ".");
+		String oferta = request.getParameter("oferta").replace(",", ".");
 		String fechaCad = request.getParameter("fechaCad");
 		String proveedor = request.getParameter("proveedor");
 		String comentario = request.getParameter("comentario");
-		/* validacion de datos
-			String expresionRegularTitulo="[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]{3,10}";
-			Pattern pattern = Pattern.compile(expresionRegularTitulo);
-			Matcher matcher = pattern.matcher(titulo);
-			if (matcher.matches()){
-				System.out.println("titulo ok");
-			}	else{
-				System.out.println("titulo no valido");
-				request.setAttribute("mensaje", "titulo no valido");
-				request.getRequestDispatcher("registroProductos.jsp").forward(request, response);
-				
+		
+			int a = 0;
+			String expresionRegularTexto="[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]{3,10}";
+			String expresionRegularComentario="[0-9a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]{0,100}";
+			String expresionRegularNumero="[0-9]{1,11}";
+			String expresionRegularPrecio="\\d+(.\\d+)?";
+			String expresionRegularFecha="\\d{2}-\\d{2}-\\d{4}";
+			
+			Pattern patternTexto = Pattern.compile(expresionRegularTexto);
+			Matcher matcherNombre = patternTexto.matcher(nombre);
+			if (matcherNombre.matches()){}	else{
+				System.out.println("nombre no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
+			}
+			Matcher matcherProveedor = patternTexto.matcher(proveedor);
+			if (matcherProveedor.matches()){}	else{
+				System.out.println("proveedor no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
 			}
 			
-		 fin de la validacion*/
-		Producto nuevoProducto = new Producto(nombre, cantidad, precio, oferta, fechaCad, proveedor, comentario);
-		System.out.println("vamos a registrar" + nuevoProducto.toString());
-		ProductosDAO productosDAO = new ProductosDAOImpl();
-		productosDAO.registrarProducto(nuevoProducto);
-		// desde un servlet no deberia mostrar nada al usuario para eso estan
-		// las jsp que son las encargadas de realizar la vista de la aplicacion
-		
-		//el server continua la ejecucion en esta jsp
-		request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+			Pattern patternNumero = Pattern.compile(expresionRegularNumero);
+			Matcher matcherCantidad = patternNumero.matcher(cantidad);
+			if (matcherCantidad.matches()){}	else{
+				System.out.println("cantidad no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
+			}
+			
+			Pattern patternPrecio = Pattern.compile(expresionRegularPrecio);
+			Matcher matcherPrecio = patternPrecio.matcher(precio);
+			if (matcherPrecio.matches()){}	else{
+				System.out.println("precio no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
+			}
+			Matcher matcherOferta = patternPrecio.matcher(oferta);
+			if (matcherOferta.matches()){}	else{
+				System.out.println("oferta no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
+			}
+			
+			Pattern patternFecha = Pattern.compile(expresionRegularFecha);
+			Matcher matcherFechaCad = patternFecha.matcher(fechaCad);
+			if (matcherFechaCad.matches()){}	else{
+				System.out.println("fecha caducidad no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
+			}
+			
+			Pattern patternComentario = Pattern.compile(expresionRegularComentario);
+			Matcher matcherComentario = patternComentario.matcher(comentario);
+			if (matcherComentario.matches()){}	else{
+				System.out.println("comentario no valido");
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+				a=1;				
+			}
+			
+			
+			if (a==0){
+				Producto nuevoProducto = new Producto(nombre, cantidad, precio, oferta, fechaCad, proveedor, comentario);
+				System.out.println("vamos a registrar" + nuevoProducto.toString());
+				ProductosDAO productosDAO = new ProductosDAOImpl();
+				productosDAO.registrarProducto(nuevoProducto);
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+			}
 		
 	}
 
